@@ -2,7 +2,7 @@ version: "3.9"
 services:
   php-fpm:
     build: ./php-fpm
-    volumes: 
+    volumes:
       - public:/var/www/html/public
   nginx:
     build: ./nginx
@@ -10,5 +10,12 @@ services:
       - "8080:80"
     volumes:
       - public:/var/www/html/public
-volumes: 
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: first_database
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+volumes:
   public:
